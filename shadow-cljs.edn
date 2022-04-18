@@ -1,0 +1,42 @@
+{:nrepl {:port 8777}
+ :source-paths ["dev" "src/cljs" "src/cljc" "resources/public"]
+ :dev-http {8000 "public/"}
+ :dependencies [[applied-science/js-interop "0.3.1"]
+                [org.clojure/core.async "1.5.648"]
+                [haslett "0.1.6"]
+                [com.rpl/specter "1.1.3"]
+                [breaking-point "0.1.2"]
+                [binaryage/devtools "1.0.4"]
+                [day8.re-frame/tracing "0.6.2"]
+                [day8.re-frame/re-frame-10x "1.0.2"]
+                [reagent "1.1.0"]
+                [re-frame "1.2.0"]
+                [day8.re-frame/http-fx "0.2.4"]
+                [cljs-ajax "0.8.4"]
+                [kezban "0.1.94"]
+                [org.clojars.ertucetin/tilakone.core "0.0.5"]
+                [org.clojars.ertucetin/msgpack-cljs "0.1.2"]]
+ :builds {:app {:target :browser
+                :js-options {:entry-keys ["module" "browser" "main"]}
+                :compiler-options {:infer-externs :auto
+                                   :output-feature-set :es6}
+                :output-dir "resources/public/js"
+                :asset-path "js"
+                :modules {:main {:init-fn herfi.core/main}}
+                :closure-defines {re-frame.trace.trace-enabled? true
+                                  day8.re-frame.tracing.trace-enabled? true}
+                :devtools {:preloads [day8.re-frame-10x.preload]
+                           :repl-init-ns cljs.user
+                           ;:autoload false
+                           }}
+          :prod {:target :browser
+                 :output-dir "resources/public/js"
+                 :js-options {:entry-keys ["module" "browser" "main"]}
+                 :compiler-options {:infer-externs :auto
+                                    :output-feature-set :es6}
+                 :closure-defines {herfi.common.config/ws-url "wss://herfi.fly.dev:443/ws"
+                                   herfi.common.config/api-url "https://herfi.fly.dev"
+                                   goog.DEBUG false}
+                 :asset-path "js"
+                 :modules {:main {:init-fn herfi.core/main}}
+                 :build-options {:ns-aliases {day8.re-frame.tracing day8.re-frame.tracing-stubs}}}}}
