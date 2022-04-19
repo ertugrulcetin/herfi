@@ -4,6 +4,9 @@ Herfi is a 3D multiplayer game prototype/technical demo written in Clojure and C
 
 Big thanks to **infinitelives/px3d** and **PlayCanvas** projects, I couldn't have managed to build this project without them. This project is a fork of **px3d**, and I tried to mimic the ECS (Entity Component System) of PlayCanvas.
 
+## Screenshot
+![img](image.png)
+
 ## Prerequisites
 
 You will need [Leiningen][1] 2.0 or above installed.
