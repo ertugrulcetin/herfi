@@ -1,7 +1,6 @@
 (ns herfi.scene.entity.tentacle
   (:require
-    [herfi.scene.ecs :as ecs]
-    [herfi.scene.procgen :as procgen]))
+    [herfi.scene.ecs :as ecs]))
 
 (defn create-tentacles []
   (dotimes [i 5]
@@ -11,6 +10,6 @@
         (ecs/add-component :render {:type :asset
                                     :asset-path [:environment "Tentacle"]})
         (ecs/add-component :animation
-                           {:idle-animation (procgen/choice ["Wave1" "Wave2"])
+                           {:idle-animation (first (shuffle ["Wave1" "Wave2"]))
                             :speed (+ (* (js/Math.random) 0.25) 0.1)})
         (ecs/add-component :particle {:name :particle}))))
