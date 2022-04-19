@@ -82,8 +82,6 @@
              rotation* [0 0 0]}
         :as opts}]
    (let [id (if (string? id) (keyword id) id)
-         _ (when (db/get-entity id)
-             (throw (ex-info "There is already an entity with this id." {:id id})))
          opts* {:id id
                 :enabled enabled
                 :position position*
